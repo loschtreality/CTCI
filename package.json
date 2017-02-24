@@ -6,7 +6,5 @@
   "repository": "git@github.com:loschtreality/CTCI.git",
   "author": "Michael Loschiavo <losch103@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "mocha": "^3.2.0"
-  }
+  "dependencies": {}
 }

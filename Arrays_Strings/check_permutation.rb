@@ -2,10 +2,8 @@
 # of the other
 
 
-def is_permutation?(str, string)
+def check_permutation(str, string)
   str.split('').sort == string.split('').sort
 end
 
-
-p is_permutation?('asanta', 'atnasa')
-p is_permutation?('world', 'hello')
+p check_permutation('world', 'hello')
