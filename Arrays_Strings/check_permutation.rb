@@ -5,5 +5,3 @@
 def check_permutation(str, string)
   str.split('').sort == string.split('').sort
 end
-
-p check_permutation('world', 'hello')

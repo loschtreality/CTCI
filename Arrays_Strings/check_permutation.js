@@ -38,3 +38,5 @@ const check_cache = (char_hash) => {
 
 console.log(check_permutation('asanta', 'atnasa'))
 console.log(check_permutation('world', 'hello'))
+
+module.exports = check_permutation
