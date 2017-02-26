@@ -5,7 +5,7 @@
 const matrix =[[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]
 
 
-const rotate90 = (matrix) => {
+const rotate_matrix = (matrix) => {
   const new_matrix = []
   for (var xAxis = 0; xAxis < matrix.length; xAxis++) {
     const new_row = []
@@ -33,5 +33,8 @@ const rotate90_in_place = (matrix) => {
   return matrix
 }
 
-console.log(rotate90(matrix))
+// console.log(rotate_matrix(matrix))
 // console.log(rotate90_in_place(matrix))
+
+
+module.exports = rotate_matrix

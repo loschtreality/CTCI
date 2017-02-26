@@ -2,7 +2,7 @@
 // What if you can't use additional data structures
 
 
-const unique_chars = (string) => {
+const is_unique = (string) => {
   let char_or = 0
 
   for (var i = 0; i < string.length; i++) {
@@ -14,5 +14,7 @@ const unique_chars = (string) => {
 }
 
 
- console.log(unique_chars('abcdef')) // true
- console.log(unique_chars('abcabc')) // false
+ // console.log(is_unique('abcdef')) // true
+ // console.log(is_unique('abcabc')) // false
+
+module.exports = is_unique

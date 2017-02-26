@@ -45,7 +45,10 @@ const one_away = (str, modified_str) => {
 }
 
 
-console.log(one_away('pale', 'ple') === true)
-console.log(one_away('pales', 'pale') === true)
-console.log(one_away('pale', 'bale') === true)
-console.log(one_away('pale', 'bake') === false)
+// console.log(one_away('pale', 'ple') === true)
+// console.log(one_away('pales', 'pale') === true)
+// console.log(one_away('pale', 'bale') === true)
+// console.log(one_away('pale', 'bake') === false)
+
+
+module.exports = one_away

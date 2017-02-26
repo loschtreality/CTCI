@@ -34,6 +34,9 @@ const valid_palindrome = (hash, length) => {
   }
 }
 
-console.log(perm_palin('abc')) // false
-console.log(perm_palin('hello olleh')) // true
-console.log(perm_palin('abcd')) // false
+// console.log(perm_palin('abc')) // false
+// console.log(perm_palin('hello olleh')) // true
+// console.log(perm_palin('abcd')) // false
+
+
+module.exports = perm_palin
