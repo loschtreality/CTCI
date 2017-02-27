@@ -6,7 +6,8 @@
 
 
 const string_compression = (string) => {
-  let compressed_string = ''
+  // use an array to reduce time complexity
+  let compressed_string = []
   let count = 1
   let prev_char = string[0]
 
@@ -14,7 +15,7 @@ const string_compression = (string) => {
     const char = string[i]
 
     if (char !== prev_char) {
-      compressed_string += prev_char + count
+      compressed_string.push(prev_char, count)
       count = 1
       prev_char = char
     } else if (char === prev_char) {
@@ -23,7 +24,8 @@ const string_compression = (string) => {
 
   }
 
-  compressed_string += prev_char + count
+  compressed_string.push(prev_char, count)
+  compressed_string = compressed_string.join('')
 
   return compressed_string.length >= string.length ? string : compressed_string
 }

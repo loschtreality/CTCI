@@ -2,14 +2,13 @@
 // is 4 bytes, write a method to rotate the image by 90 degrees, can you do it in place?
 
 
-const matrix =[[1,2,3,4], [5,6,7,8], [9,10,11,12], [13,14,15,16]]
-
-
 const rotate_matrix = (matrix) => {
+  if (matrix.length !== matrix[0].length) { return new Error("uneven matrix") }
+
   const new_matrix = []
-  for (var xAxis = 0; xAxis < matrix.length; xAxis++) {
+  for (let xAxis = 0; xAxis < matrix.length; xAxis++) {
     const new_row = []
-    for (var yAixs = 0; yAixs < matrix.length; yAixs++) {
+    for (let yAixs = 0; yAixs < matrix.length; yAixs++) {
       new_row.unshift(matrix[yAixs][xAxis])
     }
     new_matrix.push(new_row)
@@ -18,14 +17,28 @@ const rotate_matrix = (matrix) => {
   return new_matrix
 }
 
-const rotate90_in_place = (matrix) => {
-  const last = matrix.length - 1
-  for (var xAxis = 0; xAxis < Math.floor(matrix.length / 2); xAxis++) {
+const rotate_matrix_in_place = (matrix) => {
+  if (matrix.length !== matrix[0].length) { return new Error("uneven matrix") }
 
-    for (var yAxis = last, inc = 0; yAxis >= 0; yAxis--, inc++) {
-      let temp =  matrix[xAxis][last - inc]
-      matrix[xAxis][last - inc] = matrix[yAxis][xAxis]
-      matrix[yAxis][xAxis] = temp
+  for (let xAxis = 0; xAxis < Math.floor(matrix.length / 2); xAxis++) {
+    const first = xAxis
+    const last = matrix.length - 1 - xAxis
+
+    for (let i = first; i < last; i++) {
+      const offset = i - first
+      const top = matrix[first][i]
+
+      // left -> top
+      matrix[first][i] = matrix[last - offset][first]
+
+      // bottom -> left
+      matrix[last - offset][first] = matrix[last][last - offset]
+
+      // right -> bottom
+      matrix[last][last - offset] = matrix[i][last]
+
+      // top -> right
+      matrix[i][last] = top
     }
 
   }
@@ -33,8 +46,4 @@ const rotate90_in_place = (matrix) => {
   return matrix
 }
 
-// console.log(rotate_matrix(matrix))
-// console.log(rotate90_in_place(matrix))
-
-
-module.exports = rotate_matrix
+module.exports = { rotate_matrix, rotate_matrix_in_place }

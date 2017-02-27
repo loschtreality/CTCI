@@ -8,13 +8,13 @@
 
 
 const string_rotation = (s1, s2) => {
-
+  if (s1.length !== s2.length) { return false }
+  s1 += s1
+  return is_substring(s1, s2)
 }
 
 const is_substring = (s1, s2) => {
   return s1.includes(s2)
 }
-
-console.log(is_substring('waterbottle', 'bottle'))
 
 module.exports = string_rotation

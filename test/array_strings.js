@@ -4,7 +4,7 @@ const check_permutation = require('../Arrays_Strings/check_permutation')
 const is_unique = require('../Arrays_Strings/is_unique')
 const one_away = require('../Arrays_Strings/one_away')
 const palindrome_permutation = require('../Arrays_Strings/palindrome_permutation')
-const rotate_matrix = require('../Arrays_Strings/rotate_matrix')
+const { rotate_matrix, rotate_matrix_in_place } = require('../Arrays_Strings/rotate_matrix')
 const URLify = require('../Arrays_Strings/URLify')
 const zero_matrix = require('../Arrays_Strings/zero_matrix')
 const string_compression = require('../Arrays_Strings/string_compression');
@@ -40,8 +40,50 @@ describe('palindrome_permutation', function () {
 
 
 describe('rotate_matrix', function () {
+  let matrix = [
+      [1, 2, 3, 4],
+      [5, 6, 7, 8],
+      [9, 10, 11, 12],
+      [13, 14, 15, 16]
+  ]
+
+  const expected_matrix = [
+      [13, 9, 5, 1],
+      [14, 10, 6, 2],
+      [15, 11, 7, 3],
+      [16, 12, 8, 4]
+  ]
+
+  describe('rotate_new_matrix', function () {
+
+    it('does not modify the original matrix', function () {
+      rotate_matrix(matrix)
+      assert.deepEqual(matrix, matrix)
+    })
+
+    it('rotates the matrix 90 degrees', function () {
+      assert.deepEqual(rotate_matrix(matrix), expected_matrix)
+    })
+
+  })
+
+  describe('rotate_matrix_in_place', function () {
+
+    it('modifies the original matrix', function () {
+      const old_matrix = matrix
+      rotate_matrix_in_place(matrix)
+      assert.notDeepEqual(old_matrix, matrix)
+    })
+
+    it('rotates the matrix 90 degrees', function () {
+      rotate_matrix_in_place(matrix)
+      assert.deepEqual(matrix, expected_matrix)
+    })
+
+  });
 
 })
+
 
 describe('URLify', function () {
 
@@ -124,6 +166,6 @@ describe('string_compression', function () {
 
 describe('string_rotation', function () {
   it('checks if one word is a rotation of the other', function () {
-
+    assert.equal(string_rotation('waterbottle', 'erbottlewat'), true)
   })
 });
