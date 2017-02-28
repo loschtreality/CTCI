@@ -2,7 +2,7 @@
 // FOLLOW UP:
 // How would you solve this problem if a temporary buffer is not allowed
 
-const { SingleNode } = require('./linked_list');
+const SingleNode = require('./linked_list');
 
 
 const remove_dups = (head) => {

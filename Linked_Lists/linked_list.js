@@ -16,13 +16,4 @@ class SingleNode {
 
 }
 
-class DoubleNode {
-  constructor(value) {
-    this.value = value
-    this.previous = null
-    this.next = null
-  }
-}
-
-
-module.exports = { SingleNode, DoubleNode }
+module.exports = SingleNode
