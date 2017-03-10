@@ -19,6 +19,23 @@ class Node {
     this.left = left
     this.right = right
   }
+
+  printTree() {
+    const printQueue = [this]
+
+    while (printQueue.length > 0) {
+      const currentNode = printQueue.shift()
+      if (currentNode.left && currentNode.right) {
+        printQueue.push(currentNode.left, currentNode.right)
+      } else if (currentNode.left && !currentNode.right) {
+        printQueue.push(currentNode.left)
+      } else if(!currentNode.left && currentNode.right) {
+        printQueue.push(currentNode.right)
+      }
+      console.log(currentNode.value)
+    }
+  }
+
 }
 
 const minimalTree = (array) => {
@@ -29,11 +46,16 @@ const minimalTree = (array) => {
   for (let index = 1, len = array.length; index < len; index++) {
     const currentRoot = rootOrder.shift()
 
-    const left = new Node(array[(index * 2)] || null)
-    const right = new Node(array[(index * 2) + 1] || null)
+    const leftIndex = index * 2
+    const rightIndex = index * 2 + 1
 
-    currentRoot.left = left
-    currentRoot.right = right
+    if (leftIndex < len) {
+      currentRoot.left = new Node(array[leftIndex])
+    }
+
+    if (rightIndex < len) {
+      currentRoot.right = new Node(array[rightIndex])
+    }
 
     rootOrder = [...rootOrder, currentRoot.left, currentRoot.right]
 
@@ -43,4 +65,6 @@ const minimalTree = (array) => {
 }
 
 const uniqueArray = [1,2,3,4,5,6,7]
-console.log(minimalTree(uniqueArray))
+// console.log(minimalTree(uniqueArray))
+
+module.exports = minimalTree
