@@ -13,34 +13,11 @@
   // Time: o(n)
   // Space: o(n)
 
-class Node {
-  constructor(value, left = null, right = null) {
-    this.value = value
-    this.left = left
-    this.right = right
-  }
-
-  printTree() {
-    const printQueue = [this]
-
-    while (printQueue.length > 0) {
-      const currentNode = printQueue.shift()
-      if (currentNode.left && currentNode.right) {
-        printQueue.push(currentNode.left, currentNode.right)
-      } else if (currentNode.left && !currentNode.right) {
-        printQueue.push(currentNode.left)
-      } else if(!currentNode.left && currentNode.right) {
-        printQueue.push(currentNode.right)
-      }
-      console.log(currentNode.value)
-    }
-  }
-
-}
+import { BSTNode } from './graph'
 
 const minimalTree = (array) => {
   array.unshift(null) // place null in beginning of array to properly index and build tree
-  const treeTop = new Node(array[1])
+  const treeTop = new BSTNode(array[1])
   let rootOrder = [treeTop]
 
   for (let index = 1, len = array.length; index < len; index++) {
@@ -50,11 +27,11 @@ const minimalTree = (array) => {
     const rightIndex = index * 2 + 1
 
     if (leftIndex < len) {
-      currentRoot.left = new Node(array[leftIndex])
+      currentRoot.left = new BSTNode(array[leftIndex])
     }
 
     if (rightIndex < len) {
-      currentRoot.right = new Node(array[rightIndex])
+      currentRoot.right = new BSTNode(array[rightIndex])
     }
 
     rootOrder = [...rootOrder, currentRoot.left, currentRoot.right]

@@ -25,6 +25,31 @@ class Node {
   }
 }
 
+class BSTNode {
+  constructor(value, left = null, right = null) {
+    this.value = value
+    this.left = left
+    this.right = right
+  }
+
+  printTree() {
+    const printQueue = [this]
+
+    while (printQueue.length > 0) {
+      const currentNode = printQueue.shift()
+      if (currentNode.left && currentNode.right) {
+        printQueue.push(currentNode.left, currentNode.right)
+      } else if (currentNode.left && !currentNode.right) {
+        printQueue.push(currentNode.left)
+      } else if(!currentNode.left && currentNode.right) {
+        printQueue.push(currentNode.right)
+      }
+      console.log(currentNode.value)
+    }
+  }
+
+}
+
 const a = new Node('a')
 const b = new Node('b')
 const c = new Node('c')
@@ -116,4 +141,4 @@ s.addConnection(t)
 
 const undirectedCircular = new Graph([s,t,u,v,w,x,y,z])
 
-module.exports = { directedNonCircular, directedCircular, undirectedNonCircular, undirectedCircular }
+module.exports = { directedNonCircular, directedCircular, undirectedNonCircular, undirectedCircular, BSTNode }
