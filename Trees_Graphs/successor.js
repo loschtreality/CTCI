@@ -27,30 +27,58 @@ class ModifedBSTNode extends BSTNode {
   }
 }
 
-const successor = (originalNode) => {
-  return inOrderCallback(originalNode, (node) => {
-    if (originalNode.parent === null) {
-      return node.value <= originalNode.value
-    } else {
-      return (node.value <= originalNode.value) && (node.value < originalNode.parent.value)
+// const successor = (originalNode) => {
+//   return inOrderCallback(originalNode, (node) => {
+//     if (originalNode.parent === null) {
+//       return node.value <= originalNode.value
+//     } else {
+//       return (node.value <= originalNode.value) && (node.value < originalNode.parent.value)
+//     }
+//   })
+// }
+//
+// const inOrderCallback = (originalNode, callback) => {
+//
+//   if (originalNode.left) {
+//     return inOrderCallback(originalNode.left, callback)
+//   }
+//
+//
+//   if (originalNode.right) {
+//     return inOrderCallback(originalNode.right, callback)
+//   }
+//
+//   if (callback(originalNode)) return originalNode.value
+//
+//   return null
+// }
+
+const successor = (node) => {
+  if (node === null) return null
+
+  if (node.right) {
+    return leftMostChild(node.right)
+  } else {
+    let current = node
+    let parent = node.parent
+
+    while (parent && parent.left !== current) {
+      current = parent
+      parent = parent.parent
     }
-  })
+
+    return parent
+  }
 }
 
-const inOrderCallback = (originalNode, callback) => {
+const leftMostChild = (node) => {
+  if (node === null) return null
 
-  if (originalNode.left) {
-    return inOrderCallback(originalNode.left, callback)
+  while (node.left) {
+    node = node.left
   }
 
-
-  if (originalNode.right) {
-    return inOrderCallback(originalNode.right, callback)
-  }
-
-  if (callback(originalNode)) return originalNode.value
-
-  return null
+  return node
 }
 
 const a = new ModifedBSTNode(48)
@@ -92,10 +120,10 @@ j.parent = i
 console.log(successor(b)) // Node G --> 11
 
 // Left child case
-// console.log(successor(e)) // Node J --> 71
+console.log(successor(e)) // Node J --> 71
 
 // Right child case
-// console.log(successor(i)) // Node J --> 71
+console.log(successor(i)) // Node J --> 71
 
 // Root node case
 console.log(successor(a)) // Node G --> 11
