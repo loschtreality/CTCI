@@ -50,6 +50,13 @@ class BSTNode {
 
 }
 
+class ModifedBSTNode extends BSTNode {
+  constructor(value) {
+    super(value)
+    this.parent = null
+  }
+}
+
 const a = new Node('a')
 const b = new Node('b')
 const c = new Node('c')
@@ -141,4 +148,48 @@ s.addConnection(t)
 
 const undirectedCircular = new Graph([s,t,u,v,w,x,y,z])
 
-module.exports = { directedNonCircular, directedCircular, undirectedNonCircular, undirectedCircular, BSTNode }
+// Modified BST
+const bstWithParent = new ModifedBSTNode(48)
+const alpha = new ModifedBSTNode(35)
+const bravo = new ModifedBSTNode(91)
+const charlie = new ModifedBSTNode(21)
+const delta = new ModifedBSTNode(55)
+const echo = new ModifedBSTNode(92)
+const foxtrot = new ModifedBSTNode(11)
+const golf = new ModifedBSTNode(29)
+const hotel = new ModifedBSTNode(77)
+const inda = new ModifedBSTNode(71)
+
+bstWithParent.left = alpha
+bstWithParent.right = bravo
+alpha.parent = bstWithParent
+bravo.parent = bstWithParent
+
+alpha.left = charlie
+charlie.parent = alpha
+
+charlie.left = foxtrot
+charlie.right = golf
+foxtrot.parent = charlie
+golf.parent = charlie
+
+bravo.left = delta
+bravo.right = echo
+delta.parent = bravo
+echo.parent = bravo
+
+delta.right = hotel
+hotel.parent = delta
+
+hotel.left = inda
+inda.parent = hotel
+
+module.exports = {
+  directedNonCircular,
+  directedCircular,
+  undirectedNonCircular,
+  undirectedCircular,
+  BSTNode,
+  ModifedBSTNode,
+  bstWithParent
+ }

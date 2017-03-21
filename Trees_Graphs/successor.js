@@ -16,16 +16,7 @@
   // Time: o(n)
   // Space: o(n)
 
-const { BSTNode } = require('./graph')
-
-// Add attribute to have a connection to parent
-
-class ModifedBSTNode extends BSTNode {
-  constructor(value) {
-    super(value)
-    this.parent = null
-  }
-}
+const { BSTNode, ModifedBSTNode } = require('./graph')
 
 // const successor = (originalNode) => {
 //   return inOrderCallback(originalNode, (node) => {
